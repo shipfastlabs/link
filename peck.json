@@ -1,0 +1,13 @@
+{
+    "preset": "base",
+    "ignore": {
+        "words": [
+            "php",
+            "symlink",
+            "unlink",
+            "shipfastlabs",
+            "composerjson",
+            "packagist"
+        ]
+    }
+}
