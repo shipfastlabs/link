@@ -80,7 +80,7 @@ it('links an existing required package', function (): void {
 
     // Verify composer.json was modified
     $data = json_decode(file_get_contents($this->composerJsonPath), true);
-    expect($data['require']['vendor/existing'])->toBe('*');
+    expect($data['require']['vendor/existing'])->toBe('*@dev');
     expect($data['repositories'])->toBeArray();
 
     // Verify tracking
@@ -97,7 +97,7 @@ it('links a new package', function (): void {
     expect($name)->toBe('vendor/new-pkg');
 
     $data = json_decode(file_get_contents($this->composerJsonPath), true);
-    expect($data['require']['vendor/new-pkg'])->toBe('*');
+    expect($data['require']['vendor/new-pkg'])->toBe('*@dev');
 
     $tracked = $this->storage->findByName('vendor/new-pkg');
     expect($tracked['wasNewRequirement'])->toBeTrue()

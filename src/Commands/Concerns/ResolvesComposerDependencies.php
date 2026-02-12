@@ -53,6 +53,7 @@ trait ResolvesComposerDependencies
         return $application->run(new ArrayInput([
             'command' => 'update',
             'packages' => $packageNames,
+            '--with-all-dependencies' => true,
             '--no-interaction' => true,
         ]), $output);
     }

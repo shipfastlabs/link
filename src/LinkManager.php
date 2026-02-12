@@ -79,7 +79,7 @@ final readonly class LinkManager
         );
 
         $this->manipulator->addPathRepository($path);
-        $this->manipulator->addLink($requireSection, $packageName, '*');
+        $this->manipulator->addLink($requireSection, $packageName, '*@dev');
 
         $this->io->write(sprintf(
             '<info>Linked %s from %s</info>',

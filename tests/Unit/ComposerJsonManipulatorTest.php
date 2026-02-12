@@ -34,6 +34,7 @@ it('adds a path repository to composer.json', function (): void {
     $repo = reset($data['repositories']);
     expect($repo['type'])->toBe('path')
         ->and($repo['url'])->toBe('../../packages/my-package')
+        ->and($repo['canonical'])->toBeFalse()
         ->and($repo['options']['symlink'])->toBeTrue();
 });
 

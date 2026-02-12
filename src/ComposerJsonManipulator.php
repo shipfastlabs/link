@@ -24,6 +24,7 @@ final readonly class ComposerJsonManipulator
         $this->configSource->addRepository($this->repoName($path), [
             'type' => 'path',
             'url' => $path,
+            'canonical' => false,
             'options' => ['symlink' => true],
         ]);
     }
