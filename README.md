@@ -6,6 +6,14 @@ Link local packages for development by modifying `composer.json` and `composer.l
 
 ## Installation
 
+Install globally so it's available in all your projects:
+
+```bash
+composer global require shipfastlabs/link
+```
+
+Or install per-project:
+
 ```bash
 composer require shipfastlabs/link --dev
 ```
