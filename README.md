@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="/docs/example.png" alt="Link">
+</p>
+
 # Link
 
 Link local packages for development by modifying `composer.json` and `composer.lock`.
