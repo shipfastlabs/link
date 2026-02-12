@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace ShipFastLabs\Link\Commands\Concerns;
 
+use Composer\DependencyResolver\Request;
+use Composer\Factory;
+use Composer\Installer;
 use ShipFastLabs\Link\ComposerJsonManipulator;
 use ShipFastLabs\Link\LinkManager;
 use ShipFastLabs\Link\LinkStorage;
 use ShipFastLabs\Link\PathHelper;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\OutputInterface;
 
 trait ResolvesComposerDependencies
 {
@@ -45,16 +46,23 @@ trait ResolvesComposerDependencies
     /**
      * @param  list<string>  $packageNames
      */
-    private function runComposerUpdate(array $packageNames, OutputInterface $output): int
+    private function runComposerUpdate(array $packageNames): int
     {
-        /** @var \Composer\Console\Application $application */
-        $application = $this->getApplication();
+        $io = $this->getIO();
 
-        return $application->run(new ArrayInput([
-            'command' => 'update',
-            'packages' => $packageNames,
-            '--with-all-dependencies' => true,
-            '--no-interaction' => true,
-        ]), $output);
+        // Create a fresh Composer instance that reads the modified composer.json
+        $composer = (new Factory())->createComposer($io, null, disableScripts: true);
+
+        $installer = Installer::create($io, $composer);
+
+        /** @phpstan-ignore method.deprecated */
+        $installer
+            ->setUpdate(true)
+            ->setDevMode(true)
+            ->setRunScripts(false)
+            ->setUpdateAllowList($packageNames)
+            ->setUpdateAllowTransitiveDependencies(Request::UPDATE_LISTED_WITH_TRANSITIVE_DEPS);
+
+        return $installer->run();
     }
 }

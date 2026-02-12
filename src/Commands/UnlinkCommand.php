@@ -44,6 +44,6 @@ final class UnlinkCommand extends BaseCommand
             return 0;
         }
 
-        return $this->runComposerUpdate($unlinkedPackageNames, $output);
+        return $this->runComposerUpdate($unlinkedPackageNames);
     }
 }

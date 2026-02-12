@@ -32,6 +32,6 @@ final class UnlinkAllCommand extends BaseCommand
             return 0;
         }
 
-        return $this->runComposerUpdate($unlinkedNames, $output);
+        return $this->runComposerUpdate($unlinkedNames);
     }
 }

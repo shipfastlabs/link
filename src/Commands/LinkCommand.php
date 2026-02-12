@@ -67,6 +67,6 @@ final class LinkCommand extends BaseCommand
             return 0;
         }
 
-        return $this->runComposerUpdate($linkedPackageNames, $output);
+        return $this->runComposerUpdate($linkedPackageNames);
     }
 }
