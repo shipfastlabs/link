@@ -51,7 +51,7 @@ trait ResolvesComposerDependencies
         $io = $this->getIO();
 
         // Create a fresh Composer instance that reads the modified composer.json
-        $composer = (new Factory())->createComposer($io, null, disableScripts: true);
+        $composer = (new Factory())->createComposer($io);
 
         $installer = Installer::create($io, $composer);
 
@@ -59,7 +59,6 @@ trait ResolvesComposerDependencies
         $installer
             ->setUpdate(true)
             ->setDevMode(true)
-            ->setRunScripts(false)
             ->setUpdateAllowList($packageNames)
             ->setUpdateAllowTransitiveDependencies(Request::UPDATE_LISTED_WITH_TRANSITIVE_DEPS);
 
